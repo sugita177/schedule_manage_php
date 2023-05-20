@@ -7,7 +7,7 @@
     </head>
     <body>
         <h2>スケジュール編集</h2>
-        <form action="./schedule_table.php" method="get">
+        <form action="./schedule_edit_action.php" method="post">
             <ul>
             <?php
                 echo "<li>名前　　 : {$_REQUEST['member']} </li>";
@@ -16,12 +16,14 @@
             ?>
             </ul>
             <div class="button-div">
-                <?php
-                    echo "<input type='hidden' name='year' value={$_REQUEST['year']}>";
-                    echo "<input type='hidden' name='month' value={$_REQUEST['month']}>";
-                ?>
-                <input type="submit" value="戻る">
-                <input type="submit" value="送信">
+                    <?php
+                        echo "<input type='hidden' name='member' value={$_REQUEST['member']}>";
+                        echo "<input type='hidden' name='year' value={$_REQUEST['year']}>";
+                        echo "<input type='hidden' name='month' value={$_REQUEST['month']}>";
+                        echo "<input type='hidden' name='day' value={$_REQUEST['day']}>";
+                    ?>
+                    <button type="submit" name="command" value="cancel">戻る</button>
+                    <button type="submit" name="command" value="edit">確定</button>
             </div>
         </form>
         

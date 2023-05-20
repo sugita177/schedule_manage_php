@@ -56,9 +56,6 @@
                 <col span="1" class="date-column">
             </colgroup>
             <tbody id="scheduleTableBody">
-
-                
-
                 <tr class="top-row">
                     <th>
                         <?php echo "{$year}年{$month}月"; ?>
@@ -84,7 +81,7 @@
                                                 echo "<input type='hidden' name='month' value={$yearMonth->getMonth()}>";
                                                 echo "<input type='hidden' name='day' value={$day}>";
                                                 echo "<input type='hidden' name='member' value={$member}>";
-                                                echo "<input type='submit' value='編集'>";
+                                                echo "<input id='editButton' type='submit' value='編集'>";
                                             echo "</form>";
                                         echo "<div>";
                                     echo "<div>";

@@ -1,8 +1,8 @@
 drop database if exists schedule_manage;
 create database schedule_manage default character set utf8 collate utf8_general_ci;
-drop user if exists 'member@localhost';
-create user 'member@localhost' identified by 'password';
-grant all on schedule_manage.* to 'member@localhost';
+drop user if exists 'member'@'localhost';
+create user 'member'@'localhost' identified by 'password';
+grant all on schedule_manage.* to 'member'@'localhost';
 use schedule_manage;
 
 create table member (
@@ -27,3 +27,6 @@ insert into member values(null, 'David');
 insert into member values(null, 'Eve');
 insert into member values(null, 'George');
 insert into member values(null, 'Irvine');
+
+insert into schedule values(1, 2023, 5, 15, 'Airport');
+insert into schedule values(3, 2023, 6, 8, 'Station');

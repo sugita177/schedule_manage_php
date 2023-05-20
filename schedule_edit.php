@@ -12,11 +12,12 @@
             <?php
                 echo "<li>名前　　 : {$_REQUEST['member']} </li>";
                 echo "<li>年月日　 : {$_REQUEST['year']}年{$_REQUEST['month']}月{$_REQUEST['day']}日</li>";
-                echo "<li>入力内容 : <input type='text' name='content' value=''></li>";
+                echo "<li>入力内容 : <input type='text' name='content' value={$_REQUEST['content']}></li>";
             ?>
             </ul>
             <div class="button-div">
                     <?php
+                        echo "<input type='hidden' name='member_id' value={$_REQUEST['member_id']}>";
                         echo "<input type='hidden' name='member' value={$_REQUEST['member']}>";
                         echo "<input type='hidden' name='year' value={$_REQUEST['year']}>";
                         echo "<input type='hidden' name='month' value={$_REQUEST['month']}>";

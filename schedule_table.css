@@ -43,11 +43,15 @@
 
 .top-row th{
     background-color: lightgreen;
+    position: sticky;
+    top: 0;
 }
 
 .date-column {
     background-color: lightgoldenrodyellow;
     width: 100px;
+    position: sticky;
+    left: 0;
 }
 
 .schedule-table td input {

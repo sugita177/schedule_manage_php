@@ -76,12 +76,13 @@
                             echo "<th>{$yearMonth->getMonth()}/{$day}({$yearMonth->getDayOfWeek($day)})</th>";
                             $sql_member = $pdo -> query('select * from member order by id');
                             foreach ($sql_member as $row) {
-                                $sql_schedule = $pdo -> prepare('select content from schedule where member_id = ? and schedule_year =? and schedule_month = ? and schedule_day = ?');
+                                $sql_schedule = $pdo -> prepare('select content from schedule 
+                                                                where member_id = ? and schedule_year =? and schedule_month = ? and schedule_day = ?');
                                 $sql_schedule -> execute([$row['id'], (int)($yearMonth->getYear()), (int)($yearMonth->getMonth()), (int)$day]);
                                 $result = $sql_schedule->fetch();
                                 $content = '';
                                 if($result !== false) {
-                                    $content = $result['content'];
+                                    $content = htmlspecialchars($result['content']);
                                 }
                                 echo "<td>";
                                     echo "<div class='schedule-table-cell-div'>";
@@ -89,11 +90,11 @@
                                         echo "<div class='.text-edit-button-div'>";
                                             echo "<form action='./schedule_edit.php' method='post'>";
                                                 echo "<input type='hidden' name='member_id' value={$row['id']}>";
-                                                echo "<input type='hidden' name='content' value={$content}>";
+                                                echo "<input type='hidden' name='content' value='{$content}'>";
                                                 echo "<input type='hidden' name='year' value={$yearMonth->getYear()}>";
                                                 echo "<input type='hidden' name='month' value={$yearMonth->getMonth()}>";
                                                 echo "<input type='hidden' name='day' value={$day}>";
-                                                echo "<input type='hidden' name='member' value={$row['id']}>";
+                                                echo "<input type='hidden' name='member' value={$row['member_name']}>";
                                                 echo "<input id='editButton' type='submit' value='編集'>";
                                             echo "</form>";
                                         echo "<div>";

@@ -8,11 +8,20 @@
     <body>
         <h2>スケジュール編集</h2>
         <form action="./schedule_edit_action.php" method="post">
+            <?php
+                $pdo = new PDO('mysql:host=localhost;dbname=schedule_manage;charset=utf8', 'member', 'password');
+                $sql_select = $pdo -> prepare('select content from schedule where member_id = ? and schedule_year =? and schedule_month = ? and schedule_day = ?');
+                $sql_select -> execute([$_REQUEST['member_id'], $_REQUEST['year'], $_REQUEST['month'], $_REQUEST['day']]);
+                $result = $sql_select->fetch();
+                if($result !== false) {
+                    echo '<button type="submit" name="command" value="delete">削除</button>';
+                }
+            ?>
             <ul>
             <?php
                 echo "<li>名前　　 : {$_REQUEST['member']} </li>";
                 echo "<li>年月日　 : {$_REQUEST['year']}年{$_REQUEST['month']}月{$_REQUEST['day']}日</li>";
-                echo "<li>入力内容 : <input type='text' name='content' value={$_REQUEST['content']}></li>";
+                echo "<li>入力内容 : <input type='text' name='content' value='{$_REQUEST['content']}'></li>";
             ?>
             </ul>
             <div class="button-div">

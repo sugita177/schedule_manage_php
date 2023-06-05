@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["error"])){$error_message = $_SESSION["error"];}
+$_SESSION = array();
+session_destroy();
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -8,6 +16,9 @@
     <body>
         <h1>スケジュール管理　ログイン</h1>
         <form action="./login_check.php" method="post">
+            <div class="error_message">
+                <?php if(isset($error_message)){echo $error_message;} ?>
+            </div>
             <label for="">
                 <span>アカウント名</span>
                 <input type="text" name="account_name"><br>

@@ -15,7 +15,7 @@ session_destroy();
     </head>
     <body>
         <h1>スケジュール管理　ログイン</h1>
-        <form action="./login_check.php" method="post">
+        <form action="./login_action.php" method="post">
             <div class="error_message">
                 <?php if(isset($error_message)){echo $error_message;} ?>
             </div>

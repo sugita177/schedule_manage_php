@@ -9,6 +9,8 @@
     </head>
     <body>
         <h2>スケジュール管理</h2>
+
+        <p><a href="./logout_action.php">ログアウト</a></p>        
         
         <?php //set year and month
             date_default_timezone_set('Asia/Tokyo');

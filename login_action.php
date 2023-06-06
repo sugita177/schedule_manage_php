@@ -1,16 +1,10 @@
 <?php
 
-
-
-
+if($_SERVER["REQUEST_METHOD"]=="GET" && realpath(__FILE__) == realpath($_SERVER["SCRIPT_FILENAME"])) {
+    die(header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"));
+}
 
 session_start();
-
-if($_SERVER["REQUEST_METHOD"]=="GET" && realpath(__FILE__) == realpath($_SERVER["SCRIPT_FILENAME"])) {
-    $_SESSION["error"] = "this url is forbidden";
-    die(header("Location:"."./login.php"));
-    
-}
 
 $account_name = "";
 $account_password = "";

@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if(empty($_SESSION["account_id"])) {
+    die(header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"));
+}
+?>
+
+
 <?php require ("./schedule_date.php"); ?>
 
 <!DOCTYPE html>
@@ -9,6 +17,7 @@
     </head>
     <body>
         <h2>スケジュール管理</h2>
+        <?php echo $_SESSION["account_name"] ?>
 
         <p><a href="./logout_action.php">ログアウト</a></p>        
         

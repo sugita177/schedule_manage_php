@@ -5,6 +5,11 @@ if($_SESSION["is_admin_user"] !== 1) {
     die(header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"));
 }
 
+if(isset($_SESSION["information"])){
+    $information_message = $_SESSION["information"];
+    $_SESSION["information"] = "";
+}
+
 ?>
 
 
@@ -17,6 +22,9 @@ if($_SESSION["is_admin_user"] !== 1) {
     </head>
     <body>
         <h2>メンバー管理</h2>
+        <div class="information">
+                <?php if(isset($information_message)){echo $information_message;} ?>
+        </div>
         <p><a href="./schedule_table.php">戻る</a></p>
 
         <table class="user-table">

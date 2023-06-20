@@ -44,7 +44,7 @@ if($_SESSION["is_admin_user"] !== 1 && $_SESSION["is_schedule_member"] !== 1) {
                         echo "<input type='hidden' name='day' value={$_REQUEST['day']}>";
                     ?>
                     <button type="submit" name="command" value="cancel">戻る</button>
-                    <button type="submit" name="command" value="edit">確定</button>
+                    <button type="submit" name="command" value="edit">保存</button>
             </div>
         </form>
         

@@ -11,7 +11,7 @@ if($_SESSION["is_admin_user"] !== 1) {
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="./schedule_edit.css">
+        <link rel="stylesheet" href="./user_edit.css">
         <title>ユーザー編集</title>
     </head>
     <body>
@@ -38,7 +38,7 @@ if($_SESSION["is_admin_user"] !== 1) {
                         echo "<input type='hidden' name='member_id' value={$_REQUEST['member_id']}>";
                     ?>
                     <button type="submit" name="command" value="cancel">戻る</button>
-                    <button type="submit" name="command" value="edit">編集を確定</button>
+                    <button type="submit" name="command" value="edit">保存</button>
                     <button type="submit" name="command" value="change-password">パスワード変更</button>
             </div>
         </form>

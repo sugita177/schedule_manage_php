@@ -5,8 +5,6 @@ if($_SERVER["REQUEST_METHOD"]=="GET" && realpath(__FILE__) == realpath($_SERVER[
     die(header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"));
 }
 
-
-
 $account_name = "";
 $account_password = "";
 
@@ -30,7 +28,7 @@ $account_password = filter_input(INPUT_POST, "account_password");
 
 //todo: deal with PDOException later
 $pdo = new PDO('mysql:host=localhost;dbname=schedule_manage;charset=utf8', 'member', 'password');
-$sql_select = $pdo -> prepare('select * from member where account_name =?');
+$sql_select = $pdo -> prepare('select * from user where account_name =?');
 $sql_select -> execute([$account_name]);
 $result = $sql_select->fetch();
 if($result === false) {
@@ -56,6 +54,8 @@ if($correct_password !== $account_password) {
 session_regenerate_id(true);
 $_SESSION["account_id"] = $account_id;
 $_SESSION["account_name"] = $account_name;
+$_SESSION["is_schedule_member"] = $result["is_schedule_member"];
+$_SESSION["is_admin_user"] = $result["is_admin_user"];
 
 header("Location:".$urlScheduleTable);
 exit();

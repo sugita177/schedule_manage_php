@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if($_SESSION["is_admin_user"] !== 1 && $_SESSION["is_schedule_member"] !== 1) {
+    die(header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"));
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>

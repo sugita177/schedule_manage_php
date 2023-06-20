@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 session_start();
 if(empty($_SESSION["account_id"])) {
     die(header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found"));
@@ -19,8 +20,14 @@ if(empty($_SESSION["account_id"])) {
         <h2>スケジュール管理</h2>
         <?php echo $_SESSION["account_name"] ?>
 
-        <p><a href="./logout_action.php">ログアウト</a></p>        
-        
+        <p><a href="./logout_action.php">ログアウト</a></p>
+        <p><a href="">ユーザー名・パスワード変更</a></p>
+        <?php 
+            if($_SESSION["is_admin_user"] === 1) {
+                echo '<p><a href="./user_table.php">ユーザー編集</a></p>';
+            }
+        ?>
+
         <?php //set year and month
             date_default_timezone_set('Asia/Tokyo');
             $nowYear = date('Y');
@@ -75,7 +82,7 @@ if(empty($_SESSION["account_id"])) {
                         <?php echo "{$year}年{$month}月"; ?>
                     </th>
                     <?php
-                        $sql_member = $pdo -> query('select * from member order by id');
+                        $sql_member = $pdo -> query('select * from user where is_schedule_member = 1 order by id');
                         foreach ($sql_member as $row) {
                             echo "<th>{$row['member_name']}</th>";
                         }
@@ -85,7 +92,7 @@ if(empty($_SESSION["account_id"])) {
                     for ($day=1; $day <= $yearMonth->getDaysPerMonth(); $day++) {
                         echo "<tr>";
                             echo "<th>{$yearMonth->getMonth()}/{$day}({$yearMonth->getDayOfWeek($day)})</th>";
-                            $sql_member = $pdo -> query('select * from member order by id');
+                            $sql_member = $pdo -> query('select * from user where is_schedule_member = 1 order by id');
                             foreach ($sql_member as $row) {
                                 $sql_schedule = $pdo -> prepare('select content from schedule 
                                                                 where member_id = ? and schedule_year =? and schedule_month = ? and schedule_day = ?');
@@ -106,7 +113,11 @@ if(empty($_SESSION["account_id"])) {
                                                 echo "<input type='hidden' name='month' value={$yearMonth->getMonth()}>";
                                                 echo "<input type='hidden' name='day' value={$day}>";
                                                 echo "<input type='hidden' name='member' value={$row['member_name']}>";
-                                                echo "<input id='editButton' type='submit' value='編集'>";
+                                                if($_SESSION["is_schedule_member"] === 1 || $_SESSION["is_admin_user"] === 1) {
+                                                    echo "<input id='editButton' type='submit' value='編集'>";
+                                                } else {
+                                                    echo "<input id='editButton' type='submit' value='編集', disabled>";
+                                                }
                                             echo "</form>";
                                         echo "<div>";
                                     echo "<div>";
